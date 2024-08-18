@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".fragments.EditGastoFragment">
+
+    <!-- Campo para seleccionar la categoría del gasto -->
+    <Spinner
+        android:id="@+id/spinner_categoria_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/categorias_gastos"
+        app:layout_constraintBottom_toTopOf="@id/et_nombre_gasto_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <!-- Campo para el nombre del gasto -->
+    <EditText
+        android:id="@+id/et_nombre_gasto_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del gasto"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@id/et_cantidad_gasto_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner_categoria_edit" />
+
+    <!-- Campo para la cantidad del gasto -->
+    <EditText
+        android:id="@+id/et_cantidad_gasto_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Cantidad del gasto"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@id/et_fecha_gasto_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_nombre_gasto_edit" />
+
+    <!-- Campo para la fecha del gasto -->
+    <EditText
+        android:id="@+id/et_fecha_gasto_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="Fecha del gasto"
+        android:inputType="none"
+        app:layout_constraintBottom_toTopOf="@id/btn_editar_gasto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_cantidad_gasto_edit" />
+
+    <!-- Botón para guardar -->
+    <Button
+        android:id="@+id/btn_editar_gasto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_background"
+        android:text="Editar"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@id/btn_eliminar_gasto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_fecha_gasto_edit"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <!-- Botón para eliminar -->
+    <Button
+        android:id="@+id/btn_eliminar_gasto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_background"
+        android:text="Eliminar"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_editar_gasto"
+        app:layout_constraintVertical_bias="0.9" />
+</androidx.constraintlayout.widget.ConstraintLayout>

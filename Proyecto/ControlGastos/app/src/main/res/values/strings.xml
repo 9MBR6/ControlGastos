@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ControlGastos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Array de categorias -->
+    <string-array name="categorias_gastos">
+        <item>Ahorros</item>
+        <item>Formación</item>
+        <item>Ocio</item>
+        <item>Comida</item>
+        <item>Gasolina</item>
+        <item>Imprevistos</item>
+        <item>Internet+Móvil</item>
+        <item>Sueldo</item>
+    </string-array>
+
+</resources>
