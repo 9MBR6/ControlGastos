@@ -48,6 +48,9 @@ public class GastoAdapter extends RecyclerView.Adapter<GastoAdapter.GastoViewHol
             case "Ahorros":
                 holder.imageViewCategoria.setImageResource(R.drawable.ic_ahorros);
                 break;
+            case "Formación":
+                holder.imageViewCategoria.setImageResource(R.drawable.ic_formacion);
+                break;
             case "Ocio":
                 holder.imageViewCategoria.setImageResource(R.drawable.ic_ocio);
                 break;
@@ -57,10 +60,10 @@ public class GastoAdapter extends RecyclerView.Adapter<GastoAdapter.GastoViewHol
             case "Gasolina":
                 holder.imageViewCategoria.setImageResource(R.drawable.ic_gasolina);
                 break;
-            case "Imprevistos":
+            case "Imprevisto":
                 holder.imageViewCategoria.setImageResource(R.drawable.ic_imprevistos);
                 break;
-            case "Internet+Móvil":
+            case "Mensual":
                 holder.imageViewCategoria.setImageResource(R.drawable.ic_internet_movil);
                 break;
             default:

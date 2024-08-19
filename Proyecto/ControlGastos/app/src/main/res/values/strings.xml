@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ControlGastos</string>
+    <string name="app_name">Cuentas</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Array de categorias -->
@@ -9,8 +9,8 @@
         <item>Ocio</item>
         <item>Comida</item>
         <item>Gasolina</item>
-        <item>Imprevistos</item>
-        <item>Internet+Móvil</item>
+        <item>Imprevisto</item>
+        <item>Mensual</item>
         <item>Sueldo</item>
     </string-array>
 

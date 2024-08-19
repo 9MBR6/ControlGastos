@@ -31,6 +31,8 @@ public class AjustesFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_ajustes, container, false);
     }
 
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -46,6 +48,55 @@ public class AjustesFragment extends Fragment {
         etSueldo = view.findViewById(R.id.et_sueldo);
         btnGuardar = view.findViewById(R.id.btn_guardar);
 
+        etAhorros.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etAhorros.setText("");
+            }
+        });
+        etFormacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etFormacion.setText("");
+            }
+        });
+        etOcio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etOcio.setText("");
+            }
+        });
+        etComida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etComida.setText("");
+            }
+        });
+        etGasolina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etGasolina.setText("");
+            }
+        });
+        etImprevistos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etImprevistos.setText("");
+            }
+        });
+        etInternetMovil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etInternetMovil.setText("");
+            }
+        });
+        etSueldo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etSueldo.setText("");
+            }
+        });
+
         // Cargar los valores guardados al inicio
         loadValues();
 
@@ -56,6 +107,7 @@ public class AjustesFragment extends Fragment {
                 requireActivity().getSupportFragmentManager().popBackStack();
             }
         });
+
     }
 
     private void saveValues() {

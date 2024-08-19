@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -176,10 +178,10 @@ public class HomeFragment extends Fragment {
                 case "Gasolina":
                     gasolina += gasto.getCantidad();
                     break;
-                case "Imprevistos":
+                case "Imprevisto":
                     imprevistos += gasto.getCantidad();
                     break;
-                case "Internet+Móvil":
+                case "Mensual":
                     internetMovil += gasto.getCantidad();
                     break;
             }
@@ -226,17 +228,47 @@ public class HomeFragment extends Fragment {
         sueldoRestante(view, R.id.sueldo_restante,valorAjusteSueldo,ahorros,formacion,ocio,comida,gasolina,imprevistos,internetMovil);
     }
 
-    private void sueldoRestante(View view, int textViewId,double sueldo, double ahorros, double formacion, double ocio, double comida, double gasolina, double imprevistos, double internet_movil) {
+    private void sueldoRestante(View view, int textViewId, double sueldo, double ahorros, double formacion, double ocio, double comida, double gasolina, double imprevistos, double internet_movil) {
         TextView textView = view.findViewById(textViewId);
-        double gastos = ahorros + formacion + ocio + comida + gasolina + imprevistos + internet_movil;
-        double resultado = sueldo - gastos;
-        textView.setText(String.format("%.2f €", resultado));
+        double totalGastado = ahorros + formacion + ocio + comida + gasolina + imprevistos + internet_movil;
+        double sueldoRestante = sueldo - totalGastado;
+
+        // Actualiza el texto del TextView con el valor del sueldo restante
+        textView.setText(String.format("%.2f €", sueldoRestante));
+
+        // Calcula el color basado en el sueldo restante
+        int color;
+        if (sueldo > 0) {
+            color = ColorUtils.getColorBasedOnValueRESTANTE((float) sueldoRestante, (float) sueldo);
+        } else {
+            color = Color.GREEN; // Color por defecto si no hay sueldo o presupuesto definido
+        }
+
+        // Aplica el color al TextView
+        textView.setTextColor(color);
     }
 
     private void totalGastado(View view, int textViewId, double ahorros, double formacion, double ocio, double comida, double gasolina, double imprevistos, double internet_movil) {
         TextView textView = view.findViewById(textViewId);
-        double resultado = ahorros + formacion + ocio + comida + gasolina + imprevistos + internet_movil;
-        textView.setText(String.format("%.2f €", resultado));
+        double totalGastado = ahorros + formacion + ocio + comida + gasolina + imprevistos + internet_movil;
+
+        // Obtén el valor del sueldo o presupuesto total desde SharedPreferences
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("GastosPreferences", Context.MODE_PRIVATE);
+        float sueldo = sharedPreferences.getFloat("sueldo", 0);
+
+        // Actualiza el texto del TextView con el valor total gastado
+        textView.setText(String.format("%.2f €", totalGastado));
+
+        // Calcula el color basado en el total gastado
+        int color;
+        if (sueldo > 0) {
+            color = ColorUtils.getColorBasedOnValue((float) totalGastado, sueldo);
+        } else {
+            color = Color.GREEN; // Color por defecto si no hay sueldo o presupuesto definido
+        }
+
+        // Aplica el color al TextView
+        textView.setTextColor(color);
     }
 
     private void updateTextViewMAX(View view, int textViewId, float targetValue) {
@@ -248,6 +280,15 @@ public class HomeFragment extends Fragment {
         TextView textView = view.findViewById(textViewId);
         double resultado = valorMaximo - valorGastado;
         textView.setText(String.format("%.2f €", resultado));
+
+        // Calcula el color basado en el valor restante
+        int color;
+        if (valorMaximo > 0) {
+            color = ColorUtils.getColorBasedOnValueRESTANTE((float) resultado, valorMaximo);
+        } else {
+            color = Color.GREEN;
+        }
+        textView.setTextColor(color);
     }
 
     private void updateTextViewColor(View view, int textViewId, double amount, float targetValue, boolean isAhorros) {
@@ -268,7 +309,29 @@ public class HomeFragment extends Fragment {
             textView.setTextColor(color);
         } else {
             // Si el valor objetivo es 0 o negativo, usa un color predeterminado
-            textView.setTextColor(Color.BLACK);
+            textView.setTextColor(Color.parseColor("#E0E0E0"));
+        }
+    }
+
+    private void updateTextViewColorRestante(View view, int textViewId, double amount, float targetValue, boolean isAhorros) {
+        TextView textView = view.findViewById(textViewId);
+        textView.setText(String.format("%.2f €", amount));
+
+        // Evita la división por cero y casos de valor objetivo no definido
+        if (targetValue > 0) {
+            // Calcula el color basado en el valor
+            int color;
+            if (isAhorros) {
+                // Para "Ahorros", el color va de rojo a verde
+                color = ColorUtils.getColorBasedOnValueAhorros((float) amount, targetValue);
+            } else {
+                // Para otras categorías, el color es verde por defecto si el monto es 0
+                color = amount > 0 ? ColorUtils.getColorBasedOnValue((float) amount, targetValue) : Color.GREEN;
+            }
+            textView.setTextColor(color);
+        } else {
+            // Si el valor objetivo es 0 o negativo, usa un color predeterminado
+            textView.setTextColor(Color.parseColor("#E0E0E0"));
         }
     }
 

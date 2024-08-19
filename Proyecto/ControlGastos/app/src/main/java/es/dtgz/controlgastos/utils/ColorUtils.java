@@ -16,6 +16,18 @@ public class ColorUtils {
         return interpolateColor(colorLow, colorHigh, normalizedAmount);
     }
 
+    public static int getColorBasedOnValueRESTANTE(float amount, float targetValue) {
+        // Definir colores de referencia
+        int colorLow = Color.RED; // Color para valores bajos
+        int colorHigh = Color.GREEN;  // Color para valores altos
+
+        // Limitar el valor máximo al 100% del objetivo
+        float normalizedAmount = Math.min(amount / targetValue, 1.0f);
+
+        // Interpolación entre colores bajo y alto
+        return interpolateColor(colorLow, colorHigh, normalizedAmount);
+    }
+
     public static int getColorBasedOnValueAhorros(float amount, float targetValue) {
         // Definir colores de referencia para "Ahorros"
         int colorLow = Color.RED;   // Color para valores bajos (menos de objetivo)

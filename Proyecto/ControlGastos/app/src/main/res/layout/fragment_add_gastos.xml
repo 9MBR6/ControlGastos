@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="@color/gray_900"
     tools:context=".fragments.AddGastoFragment">
 
     <!-- Título del formulario -->
     <TextView
         android:id="@+id/tv_titulo_formulario"
+        android:textColor="@color/gray_300"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Agregar Gasto"
@@ -29,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:elevation="4dp"
+        app:cardBackgroundColor="@color/gray_800"
         app:layout_constraintTop_toBottomOf="@id/tv_titulo_formulario"
         app:layout_constraintBottom_toTopOf="@id/btn_guardar_gasto"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,76 +47,83 @@
 
             <!-- Campo para seleccionar la categoría del gasto -->
             <TextView
+                android:textColor="@color/gray_300"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Categoría del gasto"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spinner_categoria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/categorias_gastos"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_edittext_background"
-                android:padding="12dp"
-                android:layout_marginBottom="16dp"/>
+                android:entries="@array/categorias_gastos"
+                android:padding="12dp" />
 
             <!-- Campo para el nombre del gasto -->
             <TextView
+                android:textColor="@color/gray_300"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Nombre del gasto"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/et_nombre_gasto"
+                android:textColorHint="@color/gray_400"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext_background"
                 android:hint="Nombre del gasto"
                 android:inputType="text"
-                android:background="@drawable/rounded_edittext_background"
-                android:padding="12dp"
-                android:layout_marginBottom="16dp"/>
+                android:padding="12dp" />
 
             <!-- Campo para la cantidad del gasto -->
             <TextView
+                android:textColor="@color/gray_300"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Cantidad del gasto"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/et_cantidad_gasto"
+                android:textColorHint="@color/gray_400"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext_background"
                 android:hint="Cantidad del gasto"
                 android:inputType="numberDecimal"
-                android:background="@drawable/rounded_edittext_background"
-                android:padding="12dp"
-                android:layout_marginBottom="16dp"/>
+                android:padding="12dp" />
 
             <!-- Campo para la fecha del gasto -->
             <TextView
+                android:textColor="@color/gray_300"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Fecha del gasto"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/et_fecha_gasto"
+                android:textColorHint="@color/gray_400"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Fecha del gasto"
-                android:focusable="false"
-                android:clickable="true"
-                android:inputType="none"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_edittext_background"
-                android:padding="12dp"
-                android:layout_marginBottom="16dp"/>
+                android:clickable="true"
+                android:focusable="false"
+                android:hint="Fecha del gasto"
+                android:inputType="none"
+                android:padding="12dp" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -132,6 +142,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:backgroundTint="@color/gray_800"
         app:layout_constraintTop_toBottomOf="@id/card_formulario" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

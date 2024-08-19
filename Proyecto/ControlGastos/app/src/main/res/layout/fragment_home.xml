@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".fragments.HomeFragment"
+    android:background="@color/gray_900"
+    >
 
     <!-- Selector de fecha desde -->
     <com.google.android.material.button.MaterialButton
@@ -15,14 +17,19 @@
         android:textSize="12sp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
+        android:textColor="@color/gray_300"
+        app:cornerRadius="16dp"
+        app:elevation="4dp"
+        app:icon="@drawable/ic_calendar"
+        app:backgroundTint="@color/gray_700"
+        app:iconTint="@color/gray_300"
+        app:strokeColor="@color/gray_400"
+        app:strokeWidth="1dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_fecha_hasta"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:cornerRadius="16dp"
-        app:elevation="4dp"
-    app:icon="@drawable/ic_calendar" />
+        app:layout_constraintHorizontal_bias="0.5" />
 
     <!-- Selector de fecha hasta -->
     <com.google.android.material.button.MaterialButton
@@ -33,12 +40,17 @@
         android:textSize="12sp"
         android:layout_marginTop="24dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_fecha_desde"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/gray_300"
         app:cornerRadius="16dp"
         app:elevation="4dp"
-    app:icon="@drawable/ic_calendar" />
+        app:icon="@drawable/ic_calendar"
+        app:backgroundTint="@color/gray_700"
+        app:iconTint="@color/gray_300"
+        app:strokeColor="@color/gray_400"
+        app:strokeWidth="1dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_fecha_desde"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Tabla de datos -->
     <androidx.cardview.widget.CardView
@@ -46,13 +58,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardBackgroundColor="@android:color/white"
+        app:cardBackgroundColor="@color/gray_800"
         app:cardCornerRadius="12dp"
         app:cardElevation="6dp"
         app:contentPadding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableLayout
             android:layout_width="match_parent"
@@ -62,19 +73,18 @@
             <!-- Encabezados -->
             <TableRow
                 android:layout_marginBottom="2dp"
-                android:background="@android:color/darker_gray">
+                android:background="@color/gray_800">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="8dp"
-                    android:text="Categorías"
+                    android:text="Categoría"
                     android:textAlignment="center"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/gray_50"
                     android:textSize="14sp"
                     android:textStyle="bold" />
-
 
                 <TextView
                     android:layout_width="0dp"
@@ -83,7 +93,7 @@
                     android:padding="8dp"
                     android:text="Gastos"
                     android:textAlignment="center"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/gray_50"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -94,7 +104,7 @@
                     android:padding="8dp"
                     android:text="Límite"
                     android:textAlignment="center"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/gray_50"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -105,7 +115,7 @@
                     android:padding="8dp"
                     android:text="Restante"
                     android:textAlignment="center"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/gray_50"
                     android:textSize="14sp"
                     android:textStyle="bold" />
             </TableRow>
@@ -113,7 +123,7 @@
             <!-- Filas de datos -->
             <TableRow
                 android:layout_marginBottom="2dp"
-                android:background="@android:color/white">
+                android:background="@color/gray_800">
 
                 <TextView
                     android:layout_width="0dp"
@@ -121,7 +131,7 @@
                     android:layout_weight="1"
                     android:padding="8dp"
                     android:text="Ahorros"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -133,7 +143,7 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
 
                 <TextView
@@ -144,7 +154,8 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
 
                 <TextView
@@ -155,13 +166,13 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
             </TableRow>
 
             <TableRow
                 android:layout_marginBottom="2dp"
-                android:background="@android:color/white">
+                android:background="@color/gray_800">
 
                 <TextView
                     android:layout_width="0dp"
@@ -169,7 +180,7 @@
                     android:layout_weight="1"
                     android:padding="8dp"
                     android:text="Formación"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -181,7 +192,7 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
 
                 <TextView
@@ -192,7 +203,8 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
 
                 <TextView
@@ -203,13 +215,13 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
             </TableRow>
 
             <TableRow
                 android:layout_marginBottom="2dp"
-                android:background="@android:color/white">
+                android:background="@color/gray_800">
 
                 <TextView
                     android:layout_width="0dp"
@@ -217,7 +229,7 @@
                     android:layout_weight="1"
                     android:padding="8dp"
                     android:text="Ocio"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -229,7 +241,7 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
 
                 <TextView
@@ -240,7 +252,8 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
 
                 <TextView
@@ -251,13 +264,13 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
             </TableRow>
 
             <TableRow
                 android:layout_marginBottom="2dp"
-                android:background="@android:color/white">
+                android:background="@color/gray_800">
 
                 <TextView
                     android:layout_width="0dp"
@@ -265,7 +278,7 @@
                     android:layout_weight="1"
                     android:padding="8dp"
                     android:text="Comida"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -277,7 +290,7 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
 
                 <TextView
@@ -288,7 +301,8 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
 
                 <TextView
@@ -299,13 +313,13 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
             </TableRow>
 
             <TableRow
                 android:layout_marginBottom="2dp"
-                android:background="@android:color/white">
+                android:background="@color/gray_800">
 
                 <TextView
                     android:layout_width="0dp"
@@ -313,7 +327,7 @@
                     android:layout_weight="1"
                     android:padding="8dp"
                     android:text="Gasolina"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -325,7 +339,7 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
 
                 <TextView
@@ -336,7 +350,8 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
 
                 <TextView
@@ -347,21 +362,21 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
             </TableRow>
 
             <TableRow
                 android:layout_marginBottom="2dp"
-                android:background="@android:color/white">
+                android:background="@color/gray_800">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="8dp"
-                    android:text="Imprevistos"
-                    android:textColor="@android:color/black"
+                    android:text="Imprevisto"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -373,7 +388,7 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
 
                 <TextView
@@ -384,7 +399,8 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
 
                 <TextView
@@ -395,21 +411,21 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
             </TableRow>
 
             <TableRow
                 android:layout_marginBottom="2dp"
-                android:background="@android:color/white">
+                android:background="@color/gray_800">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="8dp"
-                    android:text="Internet+Movil"
-                    android:textColor="@android:color/black"
+                    android:text="Mensual"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -421,7 +437,7 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
 
                 <TextView
@@ -432,7 +448,8 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
 
                 <TextView
@@ -443,14 +460,14 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
             </TableRow>
 
-            <!-- Fila Total Gastado -->
+            <!-- Total Gastado -->
             <TableRow
                 android:layout_marginBottom="2dp"
-                android:background="@android:color/white">
+                android:background="@color/gray_800">
 
                 <TextView
                     android:layout_width="0dp"
@@ -458,7 +475,7 @@
                     android:layout_weight="1"
                     android:padding="8dp"
                     android:text="Total gastado: "
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -470,14 +487,15 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="textEnd"
-                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
             </TableRow>
 
-            <!-- Fila Restante -->
+            <!-- Restante -->
             <TableRow
                 android:layout_marginBottom="2dp"
-                android:background="@android:color/white">
+                android:background="@color/gray_800">
 
                 <TextView
                     android:layout_width="0dp"
@@ -485,7 +503,7 @@
                     android:layout_weight="1"
                     android:padding="8dp"
                     android:text="Restante: "
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -497,7 +515,8 @@
                     android:padding="8dp"
                     android:text="0.00 €"
                     android:textAlignment="textEnd"
-                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_300"
                     android:textSize="14sp" />
             </TableRow>
 
@@ -514,5 +533,8 @@
         android:contentDescription="Añadir gastos"
         app:srcCompat="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:backgroundTint="@color/gray_800"
+        app:fabSize="normal"
+        app:iconTint="@color/gray_50" />
 </androidx.constraintlayout.widget.ConstraintLayout>

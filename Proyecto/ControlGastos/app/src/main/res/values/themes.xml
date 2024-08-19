@@ -3,6 +3,9 @@
     <style name="Base.Theme.ControlGastos" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- Custom status bar color for light and dark themes -->
+        <item name="android:statusBarColor">@color/gray_900</item>
     </style>
 
     <style name="Theme.ControlGastos" parent="Base.Theme.ControlGastos" />

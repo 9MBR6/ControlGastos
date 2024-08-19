@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/gray_800"
     app:cardCornerRadius="8dp">
 
     <LinearLayout
@@ -34,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textColor="@android:color/black"
+                android:textColor="@color/gray_300"
                 android:textStyle="bold" />
 
             <TextView
@@ -42,21 +43,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@color/gray_400" />
 
             <TextView
                 android:id="@+id/text_view_cantidad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:textColor="@android:color/black" />
+                android:textColor="@color/gray_300" />
 
             <TextView
                 android:id="@+id/text_view_fecha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@color/gray_400" />
         </LinearLayout>
     </LinearLayout>
 
