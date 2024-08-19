@@ -7,89 +7,149 @@
     android:padding="16dp"
     tools:context=".fragments.EditGastoFragment">
 
-    <!-- Campo para seleccionar la categoría del gasto -->
-    <Spinner
-        android:id="@+id/spinner_categoria_edit"
-        android:layout_width="0dp"
+    <!-- Título del formulario -->
+    <TextView
+        android:id="@+id/tv_titulo_formulario_edit"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:entries="@array/categorias_gastos"
-        app:layout_constraintBottom_toTopOf="@id/et_nombre_gasto_edit"
+        android:text="Editar Gasto"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/card_formulario_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Campo para el nombre del gasto -->
-    <EditText
-        android:id="@+id/et_nombre_gasto_edit"
+    <!-- CardView que contiene el formulario -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_formulario_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Nombre del gasto"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@id/et_cantidad_gasto_edit"
+        android:layout_margin="16dp"
+        android:elevation="4dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toTopOf="@id/button_container"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinner_categoria_edit" />
+        app:layout_constraintTop_toBottomOf="@id/tv_titulo_formulario_edit">
 
-    <!-- Campo para la cantidad del gasto -->
-    <EditText
-        android:id="@+id/et_cantidad_gasto_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Cantidad del gasto"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@id/et_fecha_gasto_edit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_nombre_gasto_edit" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <!-- Campo para la fecha del gasto -->
-    <EditText
-        android:id="@+id/et_fecha_gasto_edit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="false"
-        android:hint="Fecha del gasto"
-        android:inputType="none"
-        app:layout_constraintBottom_toTopOf="@id/btn_editar_gasto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_cantidad_gasto_edit" />
+            <!-- Campo para seleccionar la categoría del gasto -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Categoría del gasto"
+                android:textStyle="bold" />
 
-    <!-- Botón para guardar -->
-    <Button
-        android:id="@+id/btn_editar_gasto"
+            <Spinner
+                android:id="@+id/spinner_categoria_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext_background"
+                android:entries="@array/categorias_gastos"
+                android:padding="12dp" />
+
+            <!-- Campo para el nombre del gasto -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Nombre del gasto"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_nombre_gasto_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext_background"
+                android:hint="Nombre del gasto"
+                android:inputType="text"
+                android:padding="12dp" />
+
+            <!-- Campo para la cantidad del gasto -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Cantidad del gasto"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_cantidad_gasto_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext_background"
+                android:hint="Cantidad del gasto"
+                android:inputType="numberDecimal"
+                android:padding="12dp" />
+
+            <!-- Campo para la fecha del gasto -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Fecha del gasto"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_fecha_gasto_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext_background"
+                android:clickable="true"
+                android:focusable="false"
+                android:hint="Fecha del gasto"
+                android:inputType="none"
+                android:padding="12dp" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Contenedor para los botones -->
+    <LinearLayout
+        android:id="@+id/button_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@drawable/button_background"
-        android:text="Editar"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@id/btn_eliminar_gasto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_fecha_gasto_edit"
-        app:layout_constraintVertical_bias="0.8" />
-
-    <!-- Botón para eliminar -->
-    <Button
-        android:id="@+id/btn_eliminar_gasto"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/button_background"
-        android:text="Eliminar"
-        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_editar_gasto"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Botón para editar -->
+        <Button
+            android:id="@+id/btn_editar_gasto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_background"
+            android:text="Editar"
+            android:textColor="@android:color/white" />
+
+        <!-- Botón para eliminar -->
+        <Button
+            android:id="@+id/btn_eliminar_gasto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_background_delete"
+            android:text="Eliminar"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

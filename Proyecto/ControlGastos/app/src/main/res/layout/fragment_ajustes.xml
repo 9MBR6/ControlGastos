@@ -7,204 +7,222 @@
     android:padding="16dp"
     tools:context=".fragments.AjustesFragment">
 
-    <!-- Etiqueta y EditText para Ahorros -->
+    <!-- Título del formulario -->
     <TextView
-        android:id="@+id/tv_ahorros"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ahorros:"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/et_ahorros"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/et_ahorros"
+        android:id="@+id/tv_titulo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Introduce cantidad"
-        android:inputType="numberDecimal"
+        android:text="Ajustes de Presupuesto"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_ahorros"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintTop_toTopOf="@id/tv_ahorros" />
-
-    <!-- Etiqueta y EditText para Formación -->
-    <TextView
-        android:id="@+id/tv_formacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Formación:"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/et_formacion"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_ahorros"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/scroll_view" />
 
-    <EditText
-        android:id="@+id/et_formacion"
+    <!-- ScrollView que contiene el CardView -->
+    <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Introduce cantidad"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_formacion"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintTop_toBottomOf="@id/tv_formacion" />
-
-    <!-- Etiqueta y EditText para Ocio -->
-    <TextView
-        android:id="@+id/tv_ocio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ocio:"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/et_ocio"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_titulo"
+        app:layout_constraintBottom_toTopOf="@id/btn_guardar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_formacion"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <EditText
-        android:id="@+id/et_ocio"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Introduce cantidad"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_ocio"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintTop_toBottomOf="@id/tv_ocio" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
 
-    <!-- Etiqueta y EditText para Comida -->
-    <TextView
-        android:id="@+id/tv_comida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Comida:"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/et_comida"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_ocio"
-        app:layout_constraintVertical_bias="0.5" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/et_comida"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Introduce cantidad"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_comida"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintTop_toBottomOf="@id/tv_comida" />
+                <!-- Etiqueta y EditText para Ahorros -->
+                <TextView
+                    android:id="@+id/tv_ahorros"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ahorros:"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="8dp" />
 
-    <!-- Etiqueta y EditText para Gasolina -->
-    <TextView
-        android:id="@+id/tv_gasolina"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gasolina:"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/et_gasolina"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_comida"
-        app:layout_constraintVertical_bias="0.5" />
+                <EditText
+                    android:id="@+id/et_ahorros"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Introduce cantidad"
+                    android:inputType="numberDecimal"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:padding="12dp"
+                    android:layout_marginBottom="16dp" />
 
-    <EditText
-        android:id="@+id/et_gasolina"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Introduce cantidad"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_gasolina"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintTop_toBottomOf="@id/tv_gasolina" />
+                <!-- Etiqueta y EditText para Formación -->
+                <TextView
+                    android:id="@+id/tv_formacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Formación:"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="8dp" />
 
-    <!-- Etiqueta y EditText para Imprevistos -->
-    <TextView
-        android:id="@+id/tv_imprevistos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Imprevistos:"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/et_imprevistos"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_gasolina"
-        app:layout_constraintVertical_bias="0.5" />
+                <EditText
+                    android:id="@+id/et_formacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Introduce cantidad"
+                    android:inputType="numberDecimal"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:padding="12dp"
+                    android:layout_marginBottom="16dp" />
 
-    <EditText
-        android:id="@+id/et_imprevistos"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Introduce cantidad"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_imprevistos"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintTop_toBottomOf="@id/tv_imprevistos" />
+                <!-- Etiqueta y EditText para Ocio -->
+                <TextView
+                    android:id="@+id/tv_ocio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ocio:"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="8dp" />
 
-    <!-- Etiqueta y EditText para Internet+Móvil -->
-    <TextView
-        android:id="@+id/tv_internet_movil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Internet+Móvil:"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/et_internet_movil"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_imprevistos"
-        app:layout_constraintVertical_bias="0.5" />
+                <EditText
+                    android:id="@+id/et_ocio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Introduce cantidad"
+                    android:inputType="numberDecimal"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:padding="12dp"
+                    android:layout_marginBottom="16dp" />
 
-    <EditText
-        android:id="@+id/et_internet_movil"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Introduce cantidad"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_internet_movil"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintTop_toBottomOf="@id/tv_internet_movil" />
+                <!-- Etiqueta y EditText para Comida -->
+                <TextView
+                    android:id="@+id/tv_comida"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comida:"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="8dp" />
 
-    <!-- Etiqueta y EditText para Sueldo -->
-    <TextView
-        android:id="@+id/tv_sueldo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sueldo:"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/et_sueldo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_internet_movil"
-        app:layout_constraintVertical_bias="0.5" />
+                <EditText
+                    android:id="@+id/et_comida"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Introduce cantidad"
+                    android:inputType="numberDecimal"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:padding="12dp"
+                    android:layout_marginBottom="16dp" />
 
-    <EditText
-        android:id="@+id/et_sueldo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Introduce cantidad"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_sueldo"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintTop_toBottomOf="@id/tv_sueldo" />
+                <!-- Etiqueta y EditText para Gasolina -->
+                <TextView
+                    android:id="@+id/tv_gasolina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gasolina:"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="8dp" />
 
-    <!-- Botón para guardar -->
+                <EditText
+                    android:id="@+id/et_gasolina"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Introduce cantidad"
+                    android:inputType="numberDecimal"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:padding="12dp"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Etiqueta y EditText para Imprevistos -->
+                <TextView
+                    android:id="@+id/tv_imprevistos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Imprevistos:"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/et_imprevistos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Introduce cantidad"
+                    android:inputType="numberDecimal"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:padding="12dp"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Etiqueta y EditText para Internet+Móvil -->
+                <TextView
+                    android:id="@+id/tv_internet_movil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Internet+Móvil:"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Etiqueta y EditText para Sueldo -->
+                <EditText
+                    android:id="@+id/et_internet_movil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:hint="Introduce cantidad"
+                    android:inputType="numberDecimal"
+                    android:padding="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_sueldo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sueldo:"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/et_sueldo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Introduce cantidad"
+                    android:inputType="numberDecimal"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:padding="12dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
+
+    <!-- Botón para guardar fuera del CardView -->
     <Button
         android:id="@+id/btn_guardar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_background"
+        android:padding="12dp"
         android:text="Guardar"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_sueldo"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintTop_toBottomOf="@id/scroll_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

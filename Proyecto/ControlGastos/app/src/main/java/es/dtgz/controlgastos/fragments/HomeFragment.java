@@ -3,7 +3,9 @@ package es.dtgz.controlgastos.fragments;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +15,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,6 +30,7 @@ import java.util.Locale;
 
 import es.dtgz.controlgastos.R;
 import es.dtgz.controlgastos.data.Gasto;
+import es.dtgz.controlgastos.utils.ColorUtils;
 
 public class HomeFragment extends Fragment {
 
@@ -52,11 +54,10 @@ public class HomeFragment extends Fragment {
         FloatingActionButton fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(v -> {
             Fragment fragment = new AddGastoFragment();
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.fragment_container, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit();
         });
 
         // Configura los botones de selección de fechas
@@ -77,7 +78,7 @@ public class HomeFragment extends Fragment {
         gastoViewModel.getAllGastos().observe(getViewLifecycleOwner(), gastos -> {
             if (gastos != null) {
                 // Actualiza la tabla con los datos obtenidos
-                filterAndUpdateTable();
+                filterAndUpdateTable(view);
             } else {
                 Toast.makeText(getContext(), "No hay datos disponibles", Toast.LENGTH_SHORT).show();
             }
@@ -103,17 +104,17 @@ public class HomeFragment extends Fragment {
             saveDatesToPreferences(getContext(), calendarDesde, calendarHasta);
 
             // Actualiza la tabla con los datos filtrados
-            filterAndUpdateTable();
+            filterAndUpdateTable(getView());
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
 
         datePickerDialog.show();
     }
 
-    private void filterAndUpdateTable() {
+    private void filterAndUpdateTable(View view) {
         gastoViewModel.getAllGastos().observe(getViewLifecycleOwner(), gastos -> {
             if (gastos != null) {
                 List<Gasto> filteredGastos = filterGastosByDate(gastos);
-                updateTable(filteredGastos, getView());
+                updateTable(filteredGastos, view);
             } else {
                 Toast.makeText(getContext(), "No hay datos disponibles", Toast.LENGTH_SHORT).show();
             }
@@ -184,43 +185,116 @@ public class HomeFragment extends Fragment {
             }
         }
 
-        ((TextView) view.findViewById(R.id.ahorros_amount)).setText(String.format("%.2f €", ahorros));
-        ((TextView) view.findViewById(R.id.formacion_amount)).setText(String.format("%.2f €", formacion));
-        ((TextView) view.findViewById(R.id.ocio_amount)).setText(String.format("%.2f €", ocio));
-        ((TextView) view.findViewById(R.id.comida_amount)).setText(String.format("%.2f €", comida));
-        ((TextView) view.findViewById(R.id.gasolina_amount)).setText(String.format("%.2f €", gasolina));
-        ((TextView) view.findViewById(R.id.imprevistos_amount)).setText(String.format("%.2f €", imprevistos));
-        ((TextView) view.findViewById(R.id.internet_movil_amount)).setText(String.format("%.2f €", internetMovil));
+        // Obtén los valores ajustados desde SharedPreferences
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("GastosPreferences", Context.MODE_PRIVATE);
+        float valorAjusteAhorros = sharedPreferences.getFloat("ahorros", 0);
+        float valorAjusteFormacion = sharedPreferences.getFloat("formacion", 0);
+        float valorAjusteOcio = sharedPreferences.getFloat("ocio", 0);
+        float valorAjusteComida = sharedPreferences.getFloat("comida", 0);
+        float valorAjusteGasolina = sharedPreferences.getFloat("gasolina", 0);
+        float valorAjusteImprevistos = sharedPreferences.getFloat("imprevistos", 0);
+        float valorAjusteInternetMovil = sharedPreferences.getFloat("internet_movil", 0);
+        float valorAjusteSueldo = sharedPreferences.getFloat("sueldo", 0);
+
+
+        updateTextViewMAX(view, R.id.ahorros_max, valorAjusteAhorros);
+        updateTextViewMAX(view, R.id.formacion_max, valorAjusteFormacion);
+        updateTextViewMAX(view, R.id.ocio_max, valorAjusteOcio);
+        updateTextViewMAX(view, R.id.comida_max, valorAjusteComida);
+        updateTextViewMAX(view, R.id.gasolina_max, valorAjusteGasolina);
+        updateTextViewMAX(view, R.id.imprevistos_max, valorAjusteImprevistos);
+        updateTextViewMAX(view, R.id.internet_movil_max, valorAjusteInternetMovil);
+
+        updateTextViewRESTANTE(view, R.id.ahorros_restante, valorAjusteAhorros, ahorros);
+        updateTextViewRESTANTE(view, R.id.formacion_restante, valorAjusteFormacion, formacion);
+        updateTextViewRESTANTE(view, R.id.ocio_restante, valorAjusteOcio, ocio);
+        updateTextViewRESTANTE(view, R.id.comida_restante, valorAjusteComida, comida);
+        updateTextViewRESTANTE(view, R.id.gasolina_restante, valorAjusteGasolina, gasolina);
+        updateTextViewRESTANTE(view, R.id.imprevistos_restante, valorAjusteImprevistos, imprevistos);
+        updateTextViewRESTANTE(view, R.id.internet_movil_restante, valorAjusteInternetMovil, internetMovil);
+
+        // Actualiza los TextView con los valores y colores
+        updateTextViewColor(view, R.id.ahorros_amount, ahorros, valorAjusteAhorros, true);
+        updateTextViewColor(view, R.id.formacion_amount, formacion, valorAjusteFormacion, false);
+        updateTextViewColor(view, R.id.ocio_amount, ocio, valorAjusteOcio, false);
+        updateTextViewColor(view, R.id.comida_amount, comida, valorAjusteComida, false);
+        updateTextViewColor(view, R.id.gasolina_amount, gasolina, valorAjusteGasolina, false);
+        updateTextViewColor(view, R.id.imprevistos_amount, imprevistos, valorAjusteImprevistos, false);
+        updateTextViewColor(view, R.id.internet_movil_amount, internetMovil, valorAjusteInternetMovil, false);
+
+        totalGastado(view, R.id.total_gastos,ahorros,formacion,ocio,comida,gasolina,imprevistos,internetMovil);
+        sueldoRestante(view, R.id.sueldo_restante,valorAjusteSueldo,ahorros,formacion,ocio,comida,gasolina,imprevistos,internetMovil);
     }
 
-    private void saveDatesToPreferences(Context context, Calendar fechaDesde, Calendar fechaHasta) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("GastosPrefs", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        editor.putString("fechaDesde", sdf.format(fechaDesde.getTime()));
-        editor.putString("fechaHasta", sdf.format(fechaHasta.getTime()));
-        editor.apply(); // Guarda los cambios
+    private void sueldoRestante(View view, int textViewId,double sueldo, double ahorros, double formacion, double ocio, double comida, double gasolina, double imprevistos, double internet_movil) {
+        TextView textView = view.findViewById(textViewId);
+        double gastos = ahorros + formacion + ocio + comida + gasolina + imprevistos + internet_movil;
+        double resultado = sueldo - gastos;
+        textView.setText(String.format("%.2f €", resultado));
     }
+
+    private void totalGastado(View view, int textViewId, double ahorros, double formacion, double ocio, double comida, double gasolina, double imprevistos, double internet_movil) {
+        TextView textView = view.findViewById(textViewId);
+        double resultado = ahorros + formacion + ocio + comida + gasolina + imprevistos + internet_movil;
+        textView.setText(String.format("%.2f €", resultado));
+    }
+
+    private void updateTextViewMAX(View view, int textViewId, float targetValue) {
+        TextView textView = view.findViewById(textViewId);
+        textView.setText(String.format("%.2f €", targetValue));
+    }
+
+    private void updateTextViewRESTANTE(View view, int textViewId, float valorMaximo, double valorGastado) {
+        TextView textView = view.findViewById(textViewId);
+        double resultado = valorMaximo - valorGastado;
+        textView.setText(String.format("%.2f €", resultado));
+    }
+
+    private void updateTextViewColor(View view, int textViewId, double amount, float targetValue, boolean isAhorros) {
+        TextView textView = view.findViewById(textViewId);
+        textView.setText(String.format("%.2f €", amount));
+
+        // Evita la división por cero y casos de valor objetivo no definido
+        if (targetValue > 0) {
+            // Calcula el color basado en el valor
+            int color;
+            if (isAhorros) {
+                // Para "Ahorros", el color va de rojo a verde
+                color = ColorUtils.getColorBasedOnValueAhorros((float) amount, targetValue);
+            } else {
+                // Para otras categorías, el color es verde por defecto si el monto es 0
+                color = amount > 0 ? ColorUtils.getColorBasedOnValue((float) amount, targetValue) : Color.GREEN;
+            }
+            textView.setTextColor(color);
+        } else {
+            // Si el valor objetivo es 0 o negativo, usa un color predeterminado
+            textView.setTextColor(Color.BLACK);
+        }
+    }
+
 
     private void loadDatesFromPreferences() {
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("GastosPrefs", Context.MODE_PRIVATE);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-
-        String fechaDesdeStr = sharedPreferences.getString("fechaDesde", null);
-        String fechaHastaStr = sharedPreferences.getString("fechaHasta", null);
+        SharedPreferences preferences = getContext().getSharedPreferences("GastosPreferences", Context.MODE_PRIVATE);
+        String fechaDesde = preferences.getString("fecha_desde", sdf.format(calendarDesde.getTime()));
+        String fechaHasta = preferences.getString("fecha_hasta", sdf.format(calendarHasta.getTime()));
 
         try {
-            if (fechaDesdeStr != null) {
-                calendarDesde.setTime(sdf.parse(fechaDesdeStr));
-            }
-            if (fechaHastaStr != null) {
-                calendarHasta.setTime(sdf.parse(fechaHastaStr));
-            }
+            calendarDesde.setTime(sdf.parse(fechaDesde));
+            calendarHasta.setTime(sdf.parse(fechaHasta));
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         ((Button) getView().findViewById(R.id.btn_fecha_desde)).setText(sdf.format(calendarDesde.getTime()));
         ((Button) getView().findViewById(R.id.btn_fecha_hasta)).setText(sdf.format(calendarHasta.getTime()));
+    }
+
+    private void saveDatesToPreferences(Context context, Calendar desde, Calendar hasta) {
+        SharedPreferences preferences = context.getSharedPreferences("GastosPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.putString("fecha_desde", sdf.format(desde.getTime()));
+        editor.putString("fecha_hasta", sdf.format(hasta.getTime()));
+        editor.apply();
     }
 }
